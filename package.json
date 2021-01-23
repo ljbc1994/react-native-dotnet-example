@@ -11,7 +11,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "generate-client": "node ./build/nswag.js"
+    "generate-client": "node ./client-build/nswag.js"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
