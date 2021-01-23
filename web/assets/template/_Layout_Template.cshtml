@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <base href="@Url.Content("~/")" />
+        <link href="manifest.json" rel="manifest" />
+        <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - DotnetSpa</title>
+
+        <% for (const css of htmlWebpackPlugin.files.css) { %>
+            <link href="@Url.Content("<%= css %>")" rel="stylesheet">
+        <% } %>
+    </head>
+
+    <body>
+        <main>
+            @RenderBody()
+        </main>
+
+        <% for (const js of htmlWebpackPlugin.files.js) { %>
+            <script src="@Url.Content("<%= js %>")"></script>
+        <% } %>
+
+        @await RenderSectionAsync("Scripts", required: false)
+
+        <% if (htmlWebpackPlugin.options.devServer) { %>
+            <script src="<%= htmlWebpackPlugin.options.devServer.url %>/webpack-dev-server.js"></script>
+        <% } %>
+    </body>
+</html>

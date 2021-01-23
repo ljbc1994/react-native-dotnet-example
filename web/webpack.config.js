@@ -1,73 +1,51 @@
+'use strict';
+
+/**
+ * @file The main webpack config, responsible
+ * for retrieving the environment context and
+ * generating a config.
+ */
+
 const path = require('path');
 const webpack = require('webpack');
-const appDirectory = path.resolve(__dirname, '../');
+const {merge} = require('webpack-merge');
+const commonConfig = require('./webpack/webpack.common');
 
-// This is needed for webpack to compile JavaScript.
-// Many OSS React Native packages are not compiled to ES5 before being
-// published. If you depend on uncompiled packages they may cause webpack build
-// errors. To fix this webpack can be configured to compile to the necessary
-// `node_module`.
-const babelLoaderConfiguration = {
-  test: /\.(js|tsx|ts)$/,
-  // Add every directory that needs to be compiled by Babel during the build.
-  include: [
-    path.resolve(appDirectory, 'index.web.js'),
-    path.resolve(appDirectory, 'src'),
-    path.resolve(appDirectory, 'node_modules/react-native-uncompiled'),
-  ],
-  use: {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-      // The 'metro-react-native-babel-preset' preset is recommended to match React Native's packager
-      presets: [
-        'module:metro-react-native-babel-preset',
-        '@babel/preset-typescript',
-      ],
-      // Re-write paths to import only the modules needed by the app
-      plugins: [
-        'react-native-web',
-        [
-          'module-resolver',
-          {
-            alias: {
-              '^react-native$': 'react-native-web',
-            },
-          },
-        ],
-      ],
-    },
-  },
+const addonsConfigRoot = path.join(__dirname, 'webpack', 'addons');
+
+const getAddons = (addons) => {
+  if (addons == null) {
+    return [];
+  }
+
+  return addons.split(',').map((addon) => {
+    const trimmed = addon.trim();
+    return require(path.join(addonsConfigRoot, `webpack.${trimmed}.js`));
+  });
 };
 
-// This is needed for webpack to import static images in JavaScript files.
-const imageLoaderConfiguration = {
-  test: /\.(gif|jpe?g|png|svg)$/,
-  use: {
-    loader: 'url-loader',
-    options: {
-      name: '[name].[ext]',
-    },
-  },
+const getConfigByEnv = (env) => {
+  let config = () => {};
+
+  try {
+    config = require(path.join(__dirname, 'webpack', `webpack.${env}.js`));
+  } catch (ex) {
+    throw new Error(ex);
+  }
+
+  return config;
 };
 
-module.exports = {
-  entry: {
-    app: path.resolve(appDirectory, 'index.web.js'),
-  },
-  output: {
-    filename: '[name].js',
-    path: path.join(__dirname, 'wwwroot', 'app'),
-  },
+module.exports = async ({NODE_ENV, NODE_ADDONS, ...webpackOpts }) => {
+  let addonsConfig = [];
 
-  module: {
-    rules: [babelLoaderConfiguration, imageLoaderConfiguration],
-  },
+  if (typeof NODE_ADDONS !== undefined) {
+    addonsConfig = getAddons(NODE_ADDONS);
+  }
 
-  resolve: {
-    alias: {
-      'react-native$': 'react-native-web',
-    },
-    extensions: ['.web.js', '.web.tsx', '.web.ts', '.js', '.tsx', '.ts'],
-  },
+  const common = commonConfig(webpackOpts);
+
+  const webpackConfig = await getConfigByEnv(NODE_ENV)({ NODE_ENV, ...webpackOpts });
+
+  return merge(common, webpackConfig, ...addonsConfig);
 };
