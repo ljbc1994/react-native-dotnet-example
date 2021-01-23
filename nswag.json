@@ -1,0 +1,43 @@
+{
+    "runtime": "Net50",
+    "codeGenerators": {
+        "swaggerToTypeScriptClient": {
+            "input": "http://localhost:52858/swagger/v1/swagger.json",
+            "output": "./src/services/client/Client.ts",
+            "className": "{controller}Client",
+            "moduleName": "",
+            "namespace": "",
+            "typeScriptVersion": 4.1,
+            "template": "Fetch",
+            "promiseType": "Promise",
+            "httpClass": "Http",
+            "injectionTokenType": "OpaqueToken",
+            "dateTimeType": "Date",
+            "nullValue": "Undefined",
+            "generateClientClasses": true,
+            "generateClientInterfaces": true,
+            "generateOptionalParameters": false,
+            "wrapDtoExceptions": true,
+            "wrapResponses": false,
+            "generateResponseClasses": true,
+            "responseClass": "SwaggerResponse",
+            "useTransformOptionsMethod": true,
+            "useTransformResultMethod": true,
+            "generateDtoTypes": true,
+            "operationGenerationMode": "SingleClientFromOperationId",
+            "markOptionalProperties": true,
+            "generateCloneMethod": false,
+            "typeStyle": "Class",
+            "generateDefaultValues": true,
+            "excludedTypeNames": [],
+            "handleReferences": false,
+            "generateConstructorInterface": true,
+            "convertConstructorInterfaceData": false,
+            "importRequiredTypes": true,
+            "useGetBaseUrlMethod": false,
+            "queryNullValue": "",
+            "clientBaseClass": "ClientBase",
+            "extensionCode": "./src/services/client/ClientTemplate.ts"
+        }
+    }
+}

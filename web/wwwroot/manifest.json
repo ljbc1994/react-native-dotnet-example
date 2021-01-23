@@ -1,0 +1,12 @@
+{
+    "name": "ReactNativeDotnetTemplate",
+    "short_name": "RNDT",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A template for react native dotnet.",
+    "related_applications": [{
+      "platform": "play",
+      "url": ""
+    }]
+}

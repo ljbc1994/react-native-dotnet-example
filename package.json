@@ -10,7 +10,8 @@
     "web:serve": "npm run web -- --env NODE_DEV_SERVER=true && webpack serve --config ./web/webpack.config.js --env NODE_ENV=dev --env NODE_DEV_SERVER=true",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "generate-client": "node ./build/nswag.js"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -38,13 +39,18 @@
     "babel-jest": "^25.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-react-native-web": "^0.14.10",
+    "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.5.1",
     "html-webpack-plugin": "^4.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "nswag": "^13.10.1",
     "react-refresh": "^0.9.0",
     "react-test-renderer": "16.13.1",
+    "rimraf": "^3.0.2",
+    "swagger-parser": "^10.0.2",
+    "tmp": "^0.2.1",
     "typescript": "^3.8.3",
     "url-loader": "^4.1.1",
     "webpack": "^5.17.0",

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, ScrollView, Button} from 'react-native';
+import { useLinkTo } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const linkTo = useLinkTo();
+    
   return (
     <SafeAreaView>
       <ScrollView
@@ -14,20 +17,7 @@ const HomeScreen = () => {
               Edit <Text style={styles.highlight}>App.tsx</Text> to sdsds
             </Text>
           </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>See Your Changes</Text>
-            <Text style={styles.sectionDescription}></Text>
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Debug</Text>
-            <Text style={styles.sectionDescription}></Text>
-          </View>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.sectionTitle}>Learn More</Text>
-            <Text style={styles.sectionDescription}>
-              Read the docs to discover what to do next:
-            </Text>
-          </View>
+          <Button title="Go to About" onPress={() => linkTo('/About')} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -36,10 +26,6 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   scrollView: {},
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
   body: {},
   sectionContainer: {
     marginTop: 32,
