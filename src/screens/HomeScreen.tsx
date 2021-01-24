@@ -1,26 +1,39 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, ScrollView, Button} from 'react-native';
-import { useLinkTo } from '@react-navigation/native';
+import {StyleSheet, View, Text, SafeAreaView, ScrollView, Button, Platform} from 'react-native';
+import { useLinkTo, useNavigation } from '@react-navigation/native';
+import { useMediaQuery } from 'react-responsive';
 
 const HomeScreen = () => {
   const linkTo = useLinkTo();
-    
+  const navigation = useNavigation();
+
+  const isDesktop = useMediaQuery({
+      query: '(min-device-width: 1224px)',
+  });
+
+  const isMobile = useMediaQuery({
+    query: '(max-device-width: 1224px)',
+  });
+
   return (
-    <SafeAreaView>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
         <View style={styles.body}>
           <View style={styles.sectionContainer}>
+            {isDesktop && <Text>You are on desktop</Text>}
+            {isMobile && <Text>You are on mobile</Text>}
+
+            {!(Platform.OS === 'web') && <Button title="Login" onPress={() => linkTo('/login')}>Login</Button>}
+
             <Text style={styles.sectionTitle}>Step why hello there</Text>
             <Text style={styles.sectionDescription}>
               Edit <Text style={styles.highlight}>App.tsx</Text> to sdsds
             </Text>
+            <Button title="Go to About" onPress={() => linkTo('/about')} />
           </View>
-          <Button title="Go to About" onPress={() => linkTo('/About')} />
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 };
 

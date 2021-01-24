@@ -10,7 +10,7 @@ const distPath = path.resolve(__dirname, "../../wwwroot");
 const appOutputPath = path.join(distPath, "app");
 
 const templateSrcPath = path.join(assetPath, "template");
-const templateDistPath = path.join(webPath, "Pages", "Shared");
+const templateDistPath = path.join(webPath, "Views", "Shared");
 
 module.exports = {
     appRoot: env.getAppRoot(),

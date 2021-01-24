@@ -17,7 +17,7 @@ module.exports = ({ NODE_ENV, NODE_DEV_SERVER }) => {
         output: {
           filename: '[name].js',
           path: config.appOutputPath,
-          publicPath: config.appRoot
+          publicPath: config.appRoot,
         },
       
         module: {

@@ -8,9 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - DotnetSpa</title>
 
-        <% for (const css of htmlWebpackPlugin.files.css) { %>
-            <link href="@Url.Content("<%= css %>")" rel="stylesheet">
-        <% } %>
+        
     </head>
 
     <body style="height:100%">
@@ -18,14 +16,12 @@
             @RenderBody()
         </main>
 
-        <% for (const js of htmlWebpackPlugin.files.js) { %>
-            <script src="@Url.Content("<%= js %>")"></script>
-        <% } %>
+        
+            <script src="@Url.Content("/app/app.ec772451.js")"></script>
+        
 
         @await RenderSectionAsync("Scripts", required: false)
 
-        <% if (htmlWebpackPlugin.options.devServer) { %>
-            <script src="<%= htmlWebpackPlugin.options.devServer.url %>/webpack-dev-server.js"></script>
-        <% } %>
+        
     </body>
 </html>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {StyleSheet, View, Text, SafeAreaView, ScrollView} from 'react-native';
-import ApiClient from "../services/client";
-import { WeatherForecast } from '../services/client/Client';
-import config from "../../config";
+import ApiClient from "../../services/client";
+import { WeatherForecast } from '../../services/client/Client';
+import config from "../../../config";
 
 const AboutScreen = () => {
    const [forecast, setForecast] = React.useState<WeatherForecast[]>([]);
