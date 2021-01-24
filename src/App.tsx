@@ -22,13 +22,13 @@ const linking = {
 
 const App = () => {
   const isDesktop = useMediaQuery({
-      query: '(min-device-width: 1224px)',
+    query: '(min-device-width: 1224px)',
   });
 
   return (
     <NavigationContainer linking={linking}>
        <Stack.Navigator headerMode={"screen"} screenOptions={{ headerShown: !isDesktop }}>
-        <Stack.Screen name="Home" component={HomeScreen} options={{ cardStyle: { position: "relative" } }} />
+        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
         {!(Platform.OS === 'web') && <Stack.Screen name="Login" component={LoginScreen}/>}
       </Stack.Navigator>

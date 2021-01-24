@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {StyleSheet, View, Text, SafeAreaView, ScrollView, Button, Platform} from 'react-native';
+import {StyleSheet, View, Text, SafeAreaView, ScrollView, Platform} from 'react-native';
 import { useLinkTo, useNavigation } from '@react-navigation/native';
 import { useMediaQuery } from 'react-responsive';
+import Button from '../components/Button';
 
 const HomeScreen = () => {
   const linkTo = useLinkTo();
@@ -26,11 +27,13 @@ const HomeScreen = () => {
 
             {!(Platform.OS === 'web') && <Button title="Login" onPress={() => linkTo('/login')}>Login</Button>}
 
-            <Text style={styles.sectionTitle}>Step why hello there</Text>
+            <Text style={styles.sectionTitle}>Step why hello sd</Text>
             <Text style={styles.sectionDescription}>
               Edit <Text style={styles.highlight}>App.tsx</Text> to sdsds
             </Text>
-            <Button title="Go to About" onPress={() => linkTo('/about')} />
+            <Button onPress={() => linkTo('/about')}>
+              Go here now!  
+            </Button>
           </View>
         </View>
       </ScrollView>

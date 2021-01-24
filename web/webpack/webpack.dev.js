@@ -2,9 +2,10 @@ const webpack = require("webpack");
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const config = require("./config");
+const { HotModuleReplacementPlugin } = require("webpack");
 
 module.exports = async ({ NODE_DEV_SERVER }) => {
-    const isDevServer = NODE_DEV_SERVER == 'true';
+    const isDevServer = NODE_DEV_SERVER != null;
 
     const publicPath = isDevServer
         ? config.devServer.contentPath
@@ -34,6 +35,7 @@ module.exports = async ({ NODE_DEV_SERVER }) => {
 
         
         plugins: [
+            new HotModuleReplacementPlugin(),
             !isDevServer
                 ? new CleanWebpackPlugin({
                       dry: true,

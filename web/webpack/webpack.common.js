@@ -5,7 +5,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const config = require("./config");
 
 module.exports = ({ NODE_ENV, NODE_DEV_SERVER }) => {
-    const isDevServer = NODE_DEV_SERVER == 'true';
+    const isDevServer = NODE_DEV_SERVER != null;
 
     return {
         mode: 'development',
@@ -73,7 +73,7 @@ module.exports = ({ NODE_ENV, NODE_DEV_SERVER }) => {
                 template: path.join(config.templateSrcPath, "_Layout_Template.cshtml"),
                 filename: path.join(config.templateDistPath, "_Layout.cshtml"),
             }),
-            isDevServer && new ReactRefreshWebpackPlugin(),
+            isDevServer ? new ReactRefreshWebpackPlugin() : false,
         ].filter(Boolean),
       
         resolve: {
