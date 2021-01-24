@@ -1,6 +1,6 @@
 # Web
 web/wwwroot/app/
-web/Pages/Shared/_Layout.cshtml
+web/Views/Shared/_Layout.cshtml
 debug.log
 
 # Secrets and common config for app/web
