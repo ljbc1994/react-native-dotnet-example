@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: npm install
+      - name: Install pod dependencies
+        run: pod install
+        working-directory: ${{env.working-directory}}
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
