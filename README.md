@@ -34,3 +34,10 @@ module.exports = {
     "API_URL": "https://localhost:5001"
 };
 ```
+
+## TODO
+1. Add a sample state management 
+2. Add a sample form library
+3. Set up CI (GitHub Actions) for building + testing web, android and ios applications.
+   - Use tagging to restrict building unnecessarily for a commit?
+
