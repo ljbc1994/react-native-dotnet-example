@@ -3,10 +3,15 @@ import {StyleSheet, View, Text, SafeAreaView, ScrollView, Platform} from 'react-
 import { useLinkTo, useNavigation } from '@react-navigation/native';
 import { useMediaQuery } from 'react-responsive';
 import Button from '../components/Button';
+import UserForm from '../components/forms/UserForm';
+import { useSelector } from "react-redux";
+
 
 const HomeScreen = () => {
   const linkTo = useLinkTo();
   const navigation = useNavigation();
+
+  const user = useSelector(state => state.user.user?.email); 
 
   const isDesktop = useMediaQuery({
       query: '(min-device-width: 1224px)',
@@ -27,10 +32,10 @@ const HomeScreen = () => {
 
             {!(Platform.OS === 'web') && <Button title="Login" onPress={() => linkTo('/login')}>Login</Button>}
 
-            <Text style={styles.sectionTitle}>Step why hello sd</Text>
-            <Text style={styles.sectionDescription}>
-              Edit <Text style={styles.highlight}>App.tsx</Text> to sdsds
-            </Text>
+            <Text>Logged in email is {user}</Text>
+
+            <UserForm />
+
             <Button onPress={() => linkTo('/about')}>
               Go here now!  
             </Button>

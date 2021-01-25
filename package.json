@@ -19,8 +19,10 @@
     "@react-navigation/drawer": "^5.12.2",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.1",
+    "@reduxjs/toolkit": "^1.5.0",
     "babel-loader": "^8.2.2",
     "css-mediaquery": "^0.1.2",
+    "formik": "^2.2.6",
     "react": "16.13.1",
     "react-dom": "^17.0.1",
     "react-native": "0.63.4",
@@ -29,7 +31,9 @@
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.15.2",
     "react-native-web": "^0.14.10",
-    "react-responsive": "^8.2.0"
+    "react-redux": "^7.2.2",
+    "react-responsive": "^8.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
