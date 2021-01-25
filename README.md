@@ -40,4 +40,4 @@ module.exports = {
 2. Add a sample form library
 3. Set up CI (GitHub Actions) for building + testing web, android and ios applications.
    - Use tagging to restrict building unnecessarily for a commit?
-
+4. Potentially support SSR (either view engine node processing or react.net), depends on benefit.
