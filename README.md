@@ -16,7 +16,7 @@ npm run generate-client
 
 Will need to add a `config.js` file, and if you're connecting locally to the api, you'll need a separate config for `config.web.js`:
 
-### `config.js`
+### `env`
 
 If we're running from an emulator, localhost refers to the emulator rather than to your computer... so you'll need to put in 
 your ip address.
@@ -24,14 +24,6 @@ your ip address.
 ```js
 module.exports = {
     "API_URL": "http://[IP ADDRESS]:5000"
-};
-```
-
-### `config.web.js`
-
-```js
-module.exports = {
-    "API_URL": "https://localhost:5001"
 };
 ```
 
