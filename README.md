@@ -14,7 +14,7 @@ npm run generate-client
 
 ## Required
 
-Will need to add a `config.js` file, and if you're connecting locally to the api, you'll need a separate config for `config.web.js`:
+Will need to add env variables as follows: 
 
 ### `env`
 
