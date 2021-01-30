@@ -1,10 +1,12 @@
 import 'react-native-gesture-handler';
 
-import React from 'react';
 import {AppRegistry} from 'react-native';
-import App from './src/App';
+import RootApp from './src/index.web';
 
-AppRegistry.registerComponent('App', () => App);
+// Can remove at some point...
+window.process = {};
+
+AppRegistry.registerComponent('App', () => RootApp);
 
 AppRegistry.runApplication('App', {
   initialProps: {},

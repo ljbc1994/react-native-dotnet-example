@@ -32,7 +32,6 @@ module.exports = async ({ NODE_DEV_SERVER }) => {
                 "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
             },
         },
-
         
         plugins: [
             new HotModuleReplacementPlugin(),

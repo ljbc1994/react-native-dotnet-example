@@ -10,12 +10,14 @@ const distPath = path.resolve(__dirname, "../../wwwroot");
 const appOutputPath = path.join(distPath, "app");
 
 const templateSrcPath = path.join(assetPath, "template");
-const templateDistPath = path.join(webPath, "Views", "Shared");
+const templateDistPath = path.join(webPath, "wwwroot", "app");
 
 module.exports = {
     appRoot: env.getAppRoot(),
 
     appDirectory,
+
+    server: path.resolve(assetPath, 'server.tsx'),
 
     app: path.resolve(appDirectory, 'index.web.js'),
 
@@ -28,7 +30,7 @@ module.exports = {
         port: 8081,
     },
 
-    cleanOptions: [appOutputPath],
+    cleanOptions: [appOutputPath, templateDistPath],
 
     relativePaths: {
         app: "app/"

@@ -1,17 +1,24 @@
+using JavaScriptViewEngine;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace DotnetSpa
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        IWebHostEnvironment _env;
+        ILoggerFactory _loggerFactory;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -19,6 +26,18 @@ namespace DotnetSpa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddJsEngine(builder =>
+            {
+                builder.UseSingletonEngineFactory();
+
+                builder.UseNodeRenderEngine(nodeOptions =>
+                {
+                    nodeOptions.ProjectDirectory = Path.Combine(_env.WebRootPath, "app");
+                    nodeOptions.GetModuleName = (path, model, bag, values, area, type) => "server";
+                   // nodeOptions.NodeInstanceOutputLogger = _loggerFactory.CreateLogger("NodeRenderEngine");
+                });
+            });
+
             services.AddControllersWithViews();
         }
 
@@ -37,7 +56,10 @@ namespace DotnetSpa
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseJsEngine();
 
             app.UseRouting();
 
@@ -57,6 +79,11 @@ namespace DotnetSpa
                         pattern: "{*anything}",
                         defaults: new { controller = "Home", action = "Index" }
                     );
+            });
+
+            app.Use((context, next) => {
+                context.Response.StatusCode = 404;
+                return next();
             });
         }
     }

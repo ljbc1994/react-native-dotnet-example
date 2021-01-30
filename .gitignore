@@ -1,11 +1,9 @@
 # Web
 web/wwwroot/app/
-web/Views/Shared/_Layout.cshtml
 debug.log
 
 # Secrets and common config for app/web
-config.js
-config.web.js
+.env
 
 # Dotnet ignore
 *.swp

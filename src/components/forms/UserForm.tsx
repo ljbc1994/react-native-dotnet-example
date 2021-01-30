@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextInput, View } from "react-native";
+import { /*TextInput*/ View } from "react-native";
 import Button from "../Button";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
@@ -20,11 +20,11 @@ const UserForm: React.FC<IUserForm> = () => {
         <Formik initialValues={{ email: "" }} onSubmit={onFormSubmit}>
             {({ handleChange, handleBlur, handleSubmit, values }) => (
                 <View>
-                    <TextInput 
+                    {/* <TextInput 
                         onChangeText={handleChange("email")}
                         onBlur={handleBlur("email")}
                         value={values.email}
-                    />
+                    /> */}
                     <Button onPress={handleSubmit}>
                         Submit
                     </Button>

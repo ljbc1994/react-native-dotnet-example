@@ -6,7 +6,15 @@ namespace DotnetSpa.Controllers
     {
         public IActionResult Index()
         {
-            return View("~/Views/Index.cshtml");
+            return View("js-{auto}", new { 
+                SiteUrl = Url.Content("~/"),
+                User = new { 
+                    User = new
+                    {
+                        Email = "barry"
+                    }
+                },
+            });
         }
     }
 }

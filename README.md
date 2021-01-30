@@ -27,9 +27,27 @@ module.exports = {
 };
 ```
 
+### What it do
+- Generates React Native iOS and Android applications
+- Generates a Dotnet 5 / Node application with SSR support (`JavaScriptViewEngine`)
+- Generates an API shared by all applications with a TypeScript generated client from Swagger
+- CI to build and test all the apps
+- Dedupe a lot of shared code (`webpack.client.js` and `webpack.server.js` can be abstracted)
+
 ## TODO
-1. Add a sample state management 
-2. Add a sample form library
-3. Set up CI (GitHub Actions) for building + testing web, android and ios applications.
-   - Use tagging to restrict building unnecessarily for a commit??
-4. Potentially support SSR (either view engine node processing or react.net), depends on benefit.
+
+- Tidy everything up
+- Style stuff
+- Better setup for SSR (Currently needs to run `web:ssr` then `web`)
+- `NodeServices` is obselete in latest dotnet so can use another JS engine at some point
+- Login / Sign up support?
+
+## Using
+
+- Ported over the [JavaScriptViewEngine](https://github.com/pauldotknopf/JavaScriptViewEngine) from `@pauldotknopf` to .NET 5 for SSR.
+
+## Issues I've found
+
+- If I want a desktop navigation, SSR generates the mobile view because it doesn't know the dimensions of the screen and there's no way
+  of detecting the dimensions?
+- I want to debug SSR with `JavaScriptViewEngine` but seems to break?

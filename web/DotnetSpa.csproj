@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\NewFolder\" />
+    <ProjectReference Include="..\JavaScriptViewEngine\JavaScriptViewEngine.csproj" />
   </ItemGroup>
 
 </Project>

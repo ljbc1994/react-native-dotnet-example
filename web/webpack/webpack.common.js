@@ -1,8 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const config = require("./config");
+const DefinePlugin = webpack.DefinePlugin;
 
 module.exports = ({ NODE_ENV, NODE_DEV_SERVER }) => {
     const isDevServer = NODE_DEV_SERVER != null;
@@ -42,6 +44,7 @@ module.exports = ({ NODE_ENV, NODE_DEV_SERVER }) => {
                 // Re-write paths to import only the modules needed by the app
                 plugins: [
                   'react-native-web',
+                  'inline-dotenv',
                   [
                     'module-resolver',
                     {
@@ -65,22 +68,34 @@ module.exports = ({ NODE_ENV, NODE_DEV_SERVER }) => {
           }],
         },
 
+        target: 'web',
+            
         plugins: [
+            new DefinePlugin({
+                SERVER: JSON.stringify(false),
+            }),
+
+            new Dotenv(),
+
             new HtmlWebpackPlugin({
                 inject: false,
                 minify: false,
                 devServer: isDevServer ? config.devServer : false,
-                template: path.join(config.templateSrcPath, "_Layout_Template.cshtml"),
-                filename: path.join(config.templateDistPath, "_Layout.cshtml"),
+                template: path.join(config.templateSrcPath, "index.html"),
+                filename: path.join(config.templateDistPath, "index.html"),
             }),
+
             isDevServer ? new ReactRefreshWebpackPlugin() : false,
         ].filter(Boolean),
-      
+        
         resolve: {
           alias: {
             'react-native$': 'react-native-web',
           },
           extensions: ['.web.js', '.web.tsx', '.web.ts', '.js', '.tsx', '.ts'],
+          fallback: {
+              "fs": false
+          },
         },
     };
 }
